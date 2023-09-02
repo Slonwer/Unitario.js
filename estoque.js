@@ -1,102 +1,34 @@
-const ordem = [];
+const chai = require('chai');
+const assert = chai.assert;
+const Produto = require('../produto'); // Importe a classe Produto a partir do arquivo 'produto.js'
 
-function cadastrarNumero(numero0, numero3, numero2, numero1) {
-  const novoNumero = {
-    numero0: numero0,
-    numero3: numero3,
-    numero2: numero2,
-    numero1: numero1,
-  };
+describe('Testes para a classe Produto', function () {
+    it('Deve criar um produto com nome e quantidade corretos', function () {
+        const produto = new Produto("Produto A", 10);
+        assert.equal(produto.nome, "Produto A");
+        assert.equal(produto.quantidade, 10);
+    });
 
-  ordem.push(novoNumero);
-}
+    // Adicione mais testes conforme necessário
+});
+const chai = require('chai');
+const assert = chai.assert;
+const {
+    somarEstoque,
+    somarClientes,
+    somarFuncionarios
+} = require('../funcoes'); // Importe as funções a partir do arquivo 'funcoes.js'
 
-function buscarNumeroPorNome(nome) {
-  return ordem.find((numero) => numero.numero0 === nome);
-}
+describe('Testes para as funções', function () {
+    it('Deve somar o estoque corretamente', function () {
+        const estoque = {
+            produtoA: 10,
+            produtoB: 15,
+            produtoC: 5
+        };
+        const totalEstoque = somarEstoque(estoque);
+        assert.equal(totalEstoque, 30);
+    });
 
-cadastrarNumero('numero', '01', '123', 'administrativo');
-cadastrarNumero('sequencia', '02', 'senha456', 'funcionario');
-
-const nomeBuscado = 'numero';
-const numeroEncontrado = buscarNumeroPorNome(nomeBuscado);
-
-if (numeroEncontrado) {
-  console.log('Número encontrado:');
-  console.log(numeroEncontrado);
-} else {
-  console.log('Número não encontrado.');
-}
-
-function somarEstoque(estoque) {
-    let totalEstoque = 0;
-    for (const produto in estoque) {
-      totalEstoque += estoque[produto];
-    }
-    return totalEstoque;
-  }
-  
-  
-  function somarClientes(clientes) {
-    return clientes.length;
-  }
-  
-  
-  function somarFuncionarios(funcionarios) {
-    return funcionarios.length;
-  }
-  
-  
-  const estoque = {
-    produtoA: 10,
-    produtoB: 15,
-    produtoC: 5
-  };
-  
-  const clientes = ["cliente1", "cliente2", "cliente3"];
-  
-  const funcionarios = ["funcionario1", "funcionario2", "funcionario3", "funcionario4"];
-  
-  const totalEstoque = somarEstoque(estoque);
-  const totalClientes = somarClientes(clientes);
-  const totalFuncionarios = somarFuncionarios(funcionarios);
-  
-  console.log("Total de estoque:", totalEstoque);
-  console.log("Total de clientes:", totalClientes);
-  console.log("Total de funcionários:", totalFuncionarios);
-  class Produto {
-    constructor(nome, quantidade) {
-      this.nome = nome;
-      this.quantidade = quantidade;
-    }
-  }
-  
-  class Cliente {
-    constructor(nome, email) {
-      this.nome = nome;
-      this.email = email;
-    }
-  }
-  
-  class Funcionario {
-    constructor(nome, cargo) {
-      this.nome = nome;
-      this.cargo = cargo;
-    }
-  }
-  
-  // Exemplo de uso:
-  const produto1 = new Produto("Produto A", 10);
-  const produto2 = new Produto("Produto B", 15);
-  const produto3 = new Produto("Produto C", 5);
-  
-  const cliente1 = new Cliente("Cliente 1", "cliente1@example.com");
-  const cliente2 = new Cliente("Cliente 2", "cliente2@example.com");
-  
-  const funcionario1 = new Funcionario("Funcionário 1", "Vendedor");
-  const funcionario2 = new Funcionario("Funcionário 2", "Gerente");
-  
-  console.log("Produto 1:", produto1);
-  console.log("Cliente 1:", cliente1);
-  console.log("Funcionário 1:", funcionario1);
-  
+    // Adicione mais testes para as outras funções conforme necessário
+});
