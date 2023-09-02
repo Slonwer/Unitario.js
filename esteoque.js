@@ -1,78 +1,30 @@
-class Produto {
-    constructor(nome, quantidade) {
-        this.nome = nome;
-        this.quantidade = quantidade;
-    }
+const chai = require('chai');
+const assert = chai.assert;
 
-    getNome() {
-        return this.nome;
-    }
+const Produto = require('./produto'); // Importe a classe Produto a partir do arquivo 'produto.js'
+const Cliente = require('./cliente'); // Importe a classe Cliente a partir do arquivo 'cliente.js'
+const Funcionario = require('./funcionario'); // Importe a classe Funcionario a partir do arquivo 'funcionario.js'
 
-    setNome(nome) {
-        this.nome = nome;
-    }
+describe('Testes para a classe Produto', function () {
+    it('Deve criar um produto com nome e quantidade corretos', function () {
+        const produto = new Produto("Produto A", 10);
+        assert.equal(produto.getNome(), "Produto A");
+        assert.equal(produto.getQuantidade(), 10);
+    });
+});
 
-    getQuantidade() {
-        return this.quantidade;
-    }
+describe('Testes para a classe Cliente', function () {
+    it('Deve criar um cliente com nome e email corretos', function () {
+        const cliente = new Cliente("Cliente 1", "cliente1@example.com");
+        assert.equal(cliente.getNome(), "Cliente 1");
+        assert.equal(cliente.getEmail(), "cliente1@example.com");
+    });
+});
 
-    setQuantidade(quantidade) {
-        this.quantidade = quantidade;
-    }
-}
-
-class Cliente {
-    constructor(nome, email) {
-        this.nome = nome;
-        this.email = email;
-    }
-
-    getNome() {
-        return this.nome;
-    }
-
-    setNome(nome) {
-        this.nome = nome;
-    }
-
-    getEmail() {
-        return this.email;
-    }
-
-    setEmail(email) {
-        this.email = email;
-    }
-}
-
-class Funcionario {
-    constructor(nome, cargo) {
-        this.nome = nome;
-        this.cargo = cargo;
-    }
-
-    getNome() {
-        return this.nome;
-    }
-
-    setNome(nome) {
-        this.nome = nome;
-    }
-
-    getCargo() {
-        return this.cargo;
-    }
-
-    setCargo(cargo) {
-        this.cargo = cargo;
-    }
-}
-
-const produto1 = new Produto("Produto A", 10);
-const produto2 = new Produto("Produto B", 15);
-const produto3 = new Produto("Produto C", 5);
-
-const cliente1 = new Cliente("Cliente 1", "cliente1@example.com");
-const cliente2 = new Cliente("Cliente 2", "cliente2@example.com");
-
-const funcionario1 = new Funcionario("Funcionário 1", "Vendedor");
-const funcionario2 = new Funcionario("Funcionário 2", "Gerente");
+describe('Testes para a classe Funcionario', function () {
+    it('Deve criar um funcionário com nome e cargo corretos', function () {
+        const funcionario = new Funcionario("Funcionário 1", "Vendedor");
+        assert.equal(funcionario.getNome(), "Funcionário 1");
+        assert.equal(funcionario.getCargo(), "Vendedor");
+    });
+});
